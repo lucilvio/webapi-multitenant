@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "9891908d-df0f-48ac-ac7a-0bd3065a4b0f",
+		"name": "Api Multitenant POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5ac66f96-35ca-488c-9a33-ef911f7836f1",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"pm.environment.set(\"key\", data.key);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"tenant\": \"btc\",\n\t\"user\": \"john_doe\",\n\t\"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:52095/api/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Oi",
+			"item": [
+				{
+					"name": "Get Documents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"value": "{{key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:52095/api/oi/documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"oi",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"type": "text",
+								"value": "{{key}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:52095/api/oi/document?periodReference=09/09&vatNumber=432432",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"oi",
+								"document"
+							],
+							"query": [
+								{
+									"key": "periodReference",
+									"value": "09/09"
+								},
+								{
+									"key": "vatNumber",
+									"value": "432432"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Btc",
+			"item": [
+				{
+					"name": "Get Documents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"value": "{{key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:52095/api/btc/documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"btc",
+								"documents"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "niodfds",
+									"disabled": true
+								},
+								{
+									"key": "tenant",
+									"value": "oi",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"type": "text",
+								"value": "{{key}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:52095/api/btc/document/12345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"btc",
+								"document",
+								"12345"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "niodfds",
+									"disabled": true
+								},
+								{
+									"key": "tenant",
+									"value": "oi",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document Integrations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"type": "text",
+								"value": "{{key}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:52095/api/btc/document/12345/integrations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"btc",
+								"document",
+								"12345",
+								"integrations"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "niodfds",
+									"disabled": true
+								},
+								{
+									"key": "tenant",
+									"value": "oi",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vodafone",
+			"item": [
+				{
+					"name": "Get Documents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"value": "{{key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:52095/api/vodafone/documents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"vodafone",
+								"documents"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "niodfds",
+									"disabled": true
+								},
+								{
+									"key": "tenant",
+									"value": "oi",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"type": "text",
+								"value": "{{key}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:52095/api/vodafone/document?vatNumber=111111&contractNumber=323232",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"vodafone",
+								"document"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "niodfds",
+									"disabled": true
+								},
+								{
+									"key": "tenant",
+									"value": "vodafone",
+									"disabled": true
+								},
+								{
+									"key": "vatNumber",
+									"value": "111111"
+								},
+								{
+									"key": "contractNumber",
+									"value": "323232"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Common",
+			"item": [
+				{
+					"name": "GetUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "key",
+								"value": "{{key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:52095/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "52095",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
